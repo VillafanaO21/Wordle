@@ -35,7 +35,7 @@ input[type="checkbox"] ~ label, input[type="radio"] ~ label {
 
 body, container, .content {
     background: #121213;
-    overlow: hidden;
+    overflow: hidden;
     font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -53,10 +53,10 @@ td {
     height: 58px;
     display: inline-flex;
     justify-content: center;
-    align-itens: center;
-    font-size: 2rem
-    line-height: 2rem
-    font-wight: bold;
+    align-items: center;
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: bold;
     vertical-align: middle;
     box-sizing: border-box;
     text-transform: uppercase;
@@ -73,7 +73,7 @@ button {
     height: 38px;
     border-radius: 6px;
     border: none;
-    background: #818384
+    background: #818384;
     color: #fff;
 }
 

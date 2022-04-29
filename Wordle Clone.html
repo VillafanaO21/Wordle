@@ -56,23 +56,29 @@
 </div>
 </body>
 <script>
-    const answer = "CRANE"; //todo make this random word
+    const words = ['MOUSE', 'VIDEO', 'ANGLE', 'PHONE'];
+    let randNum = Math.floor(Math.random()* words.length);
+    let answer = words[randNum];
+    console.log(answer)
     const board = document.getElementById('board');
     const textBox = document.querySelector('input');
     const submitButton = document.querySelector('button');
-    const gameoverMessage = document.getElementById('game-over');
+    const gameOverMessage = document.getElementById('game-over');
 
     let currentGuessNumber = 0
 
-    sumbitButton.addEventListener('click', function (e) {
+    submitButton.addEventListener('click', function (e) {
+        console.log('click')
         let guess = textBox.value;
+        console.log(guess)
         if (guess.length !== 5) {
             return //don't accept words that aren't 5 letter long
         }
         //todo clear the textbox once you hit sumbit
+        textBox.value = '';
 
         //render guess to the board
-        writeGuuess(guess) //todo create this function
+        writeGuess(guess) //todo create this function
 
         currentGuessNumber++
 
@@ -104,19 +110,19 @@
 
         for (let i = 0; i < matchArray.length; i++) {
             let column = columns[i];
-            columns.textContent = guess[i].toUpperCase();
+            column.textContent = guess[i].toUpperCase();
 
             if (matchArray[i] === 2) { //perfect match
-                columns.classLists.add('correct');
+                column.classList.add('correct');
             } else if (matchArray[i] === 1) { //in word, wrong spot
-                columns.classLists.add('in-word');
+                column.classList.add('in-word');
             } else {
-                columns.classList.add('incorrect'); //no match
+                column.classList.add('incorrect'); //no match
             }
         }
     }
 
-    function buildMatchArray(guess){
+    function buildMatchArray(guess) {
         guess = guess.toUpperCase();
         let answerAsArray = [];
         let matchArray = [0, 0, 0, 0, 0]; //assume no match to start
@@ -126,20 +132,21 @@
         }
 
         //find exact matches
-        for (let i = 0; 1 < guess.length; i++){}
-        let letter = guess[i];
-        if (letter === answer[i]){
-            answersAsArray[i] = null; //remove letter to prevent matching it as yellow too
-            matchArray[i] = 2; //indicates we found a match
+        for (let i = 0; i < guess.length; i++) {
+            let letter = guess[i];
+            if (letter === answer[i]) {
+                answerAsArray[i] = null; //remove letter to prevent matching it as yellow too
+                matchArray[i] = 2; //indicates we found a match
+            }
         }
 
-        //find in-word matches and missies
-        for (let i = 0; i < guess.length; i++){
+        //find in-word matches and misses
+        for (let i = 0; i < guess.length; i++) {
             let letter = guess[i];
             let index = answerAsArray.indexOf(letter);
 
             //if letter not in remaining letters, move on to next letter
-            if (index === -1){
+            if (index === -1) {
                 continue
             }
 
@@ -147,10 +154,8 @@
             answerAsArray[index] = null;
             //mark it yellow as it is in the word but not in the correct spot
             matchArray[i] = 1
-        } return matchArray
-    //todo find exact matches first
-
-    //todo find in-word matches and misses
+        }
+        return matchArray
 
     }
 </script>
