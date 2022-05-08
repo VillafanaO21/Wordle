@@ -60,11 +60,11 @@
     const board = document.getElementById('board');
     const textBox = document.querySelector('input');
     const submitButton = document.querySelector('button');
-    const gameoverMessage = document.getElementById('game-over');
+    const gameOverMessage = document.getElementById('game-over');
 
     let currentGuessNumber = 0
 
-    sumbitButton.addEventListener('click', function (e) {
+    submitButton.addEventListener('click', function (e) {
         let guess = textBox.value;
         if (guess.length !== 5) {
             return //don't accept words that aren't 5 letter long
@@ -72,7 +72,7 @@
         //todo clear the textbox once you hit sumbit
 
         //render guess to the board
-        writeGuuess(guess) //todo create this function
+        writeGuess(guess) //todo create this function
 
         currentGuessNumber++
 
@@ -107,9 +107,9 @@
             columns.textContent = guess[i].toUpperCase();
 
             if (matchArray[i] === 2) { //perfect match
-                columns.classLists.add('correct');
+                columns.classList.add('correct');
             } else if (matchArray[i] === 1) { //in word, wrong spot
-                columns.classLists.add('in-word');
+                columns.classList.add('in-word');
             } else {
                 columns.classList.add('incorrect'); //no match
             }
@@ -129,7 +129,7 @@
         for (let i = 0; 1 < guess.length; i++){}
         let letter = guess[i];
         if (letter === answer[i]){
-            answersAsArray[i] = null; //remove letter to prevent matching it as yellow too
+            answerAsArray[i] = null; //remove letter to prevent matching it as yellow too
             matchArray[i] = 2; //indicates we found a match
         }
 
